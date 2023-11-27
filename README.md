@@ -1,6 +1,19 @@
-# Getting Started with Create React App
+# Currency Converter React
+
+## Demo 
+https://tiocassi.github.io/currency-converter-react/
+
+## Description
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Technologies
+
+- React
+- HTML
+- CSS
+- JavaScpript
+- ES 6 Features
 
 ## Available Scripts
 
