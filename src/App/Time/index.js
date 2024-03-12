@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import "./style.css"
+import { Date } from "./styled";
+
+const Format = (date) => date.toLocaleString("pl",
+    {
+        weekday: "long", day: "numeric", month: "long",
+        minute: "numeric", hour: "2-digit", second: "2-digit"
+    });
 
 export const Time = () => {
 
@@ -16,13 +22,10 @@ export const Time = () => {
     }, []);
 
     return (
-        <div className="time">
-           Dzisiaj jest
-           {" "}
-           {date.toLocaleString("pl", 
-           {weekday: "long", day: "numeric", month: "long", 
-            minute: "numeric", hour: "2-digit", second: "2-digit"
-           })}
-        </div>
+        <Date>
+            Dzisiaj jest
+            {" "}
+            {Format(date)}
+        </Date>
     )
 };    

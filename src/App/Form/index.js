@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { currencies } from "../currencies";
 import { Result } from "./Result";
-import "./style.css";
+import { Document, Header, Text, Field, Select, Button } from "./styled";
 
 export const Form = ({ calculateResult, result }) => {
       const [currency, setCurrency] = useState(currencies[0].short);
@@ -12,20 +12,19 @@ export const Form = ({ calculateResult, result }) => {
             calculateResult(currency, amount);
       }
       return (
-            <form className="form" onSubmit={onSubmit}>
-                  <h1 className="form__header">
+            <Document onSubmit={onSubmit}>
+                  <Header>
                         Przelicznik walut
-                  </h1>
+                  </Header>
                   <p>
                         <label>
-                              <span className="form__labelText">
+                              <Text>
                                     Kwota w zł*:
-                              </span>
-                              <input
+                              </Text>
+                              <Field
                                     value={amount}
                                     onChange={({ target }) => setAmount(target.value)}
                                     placeholder="wpisz kwotę w zł"
-                                    className="form__field"
                                     type="number"
                                     required
                                     step="0.01"
@@ -34,11 +33,10 @@ export const Form = ({ calculateResult, result }) => {
                   </p>
                   <p>
                         <label>
-                              <span className="form__labelText">
+                              <Text>
                                     Waluta:
-                              </span>
-                              <select
-                                    className="form__field"
+                              </Text>
+                              <Select
                                     value={currency}
                                     onChange={({ target }) => setCurrency(target.value)}
                               >
@@ -50,14 +48,14 @@ export const Form = ({ calculateResult, result }) => {
                                                 {currency.name}
                                           </option>
                                     )))}
-                              </select>
+                              </Select>
                         </label>
                   </p>
                   <p>
-                        <button className="form__button">Przelicz!</button>
+                        <Button>Przelicz!</Button>
                   </p>
-      
+
                   <Result result={result} />
-            </form>
+            </Document>
       );
 }
