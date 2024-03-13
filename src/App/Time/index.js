@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { Date } from "./styled";
+import { useCurrentDate } from "./useCurrentDate";
 
 const Format = (date) => date.toLocaleString("pl",
     {
@@ -8,18 +8,8 @@ const Format = (date) => date.toLocaleString("pl",
     });
 
 export const Time = () => {
+    const date = useCurrentDate();
 
-    const [date, setDate] = useState(new Date());
-
-    useEffect(() => {
-        const Interval = setInterval(() => {
-            setDate(new Date());
-        }, 1000);
-
-        return () => {
-            clearInterval(Interval);
-        };
-    }, []);
 
     return (
         <Date>
@@ -27,5 +17,5 @@ export const Time = () => {
             {" "}
             {Format(date)}
         </Date>
-    )
-};    
+    );
+};
