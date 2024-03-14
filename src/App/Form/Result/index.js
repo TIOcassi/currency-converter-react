@@ -1,7 +1,7 @@
-import { Effect } from "./styled";
+import { StyledResult } from "./styled";
 
 export const Result = ({ result }) => (
-      <Effect>
+      <StyledResult>
             {result !== undefined && (
                   <>
                         {result.sourceAmount.toFixed(2)}&nbsp;PLN&nbsp;=&nbsp;
@@ -11,5 +11,5 @@ export const Result = ({ result }) => (
                         </strong>
                   </>
             )}
-      </Effect>
+      </StyledResult>
 );
