@@ -12,7 +12,7 @@ export const Form = ({ calculateResult, result }) => {
             calculateResult(currency, amount);
       }
       return (
-            <Document onSubmit={onSubmit}>
+            <StyledForm onSubmit={onSubmit}>
                   <Header>
                         Przelicznik walut
                   </Header>
@@ -56,6 +56,6 @@ export const Form = ({ calculateResult, result }) => {
                   </p>
 
                   <Result result={result} />
-            </Document>
+            </StyledForm>
       );
 }

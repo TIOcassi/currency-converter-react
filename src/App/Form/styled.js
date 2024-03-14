@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Document = styled.form`
+export const StyledForm = styled.form`
       margin: auto;
 `;
 
