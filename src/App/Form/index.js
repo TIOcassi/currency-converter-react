@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { currencies } from "../currencies";
 import { Result } from "./Result";
-import { Document, Header, Text, Field, Select, Button } from "./styled";
+import { StyledForm, Header, Text, Field, Select, Button } from "./styled";
 
 export const Form = ({ calculateResult, result }) => {
       const [currency, setCurrency] = useState(currencies[0].short);
