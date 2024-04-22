@@ -3,6 +3,6 @@ import styled from "styled-components";
 export const Date = styled.div`
     font-family: monospace;
     font-size: 19px;
-    color: hsl(208, 84%, 23%);
+    color: ${({ theme }) => theme.color.deepSapphire};
     text-align: right;
 `;

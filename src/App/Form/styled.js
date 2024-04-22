@@ -6,8 +6,8 @@ export const StyledForm = styled.form`
 
 export const Header = styled.h1`
       text-transform: uppercase;
-      color: black;
-      background-color: rgb(215, 131, 131);
+      color: ${({ theme }) => theme.color.black};
+      background-color: ${({ theme }) => theme.color.pink};
 `;
 
 export const Text = styled.span`
@@ -16,7 +16,7 @@ export const Text = styled.span`
       width: 150px;
       display: inline-block;
       margin-right: 10px;
-      color: black;
+      color: ${({ theme }) => theme.color.black};
 `;
 
 export const Field = styled.input`
@@ -31,14 +31,14 @@ export const Select = styled.select`
 
 export const Button = styled.button`
       width: 60%;
-      background-color: rgb(65, 52, 58);
-      color: white;
+      background-color: ${({ theme }) => theme.color.matterhorn};
+      color: ${({ theme }) => theme.color.white};
       font-size: large;
       padding: 20px;
       margin-top: 40px;
       align-items: center;
 
       &:hover {
-        background-color: rgb(215, 131, 131);
+        background-color: ${({ theme }) => theme.color.pink};
       }
 `;

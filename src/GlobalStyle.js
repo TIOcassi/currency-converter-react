@@ -1,3 +1,7 @@
+import { createGlobalStyle } from "styled-components";
+import background from "./money.jpg";
+
+export const GlobalStyle = createGlobalStyle`
 html {
   box-sizing: border-box;
 }
@@ -13,4 +17,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: url("${background}");
+  background-size: cover;
 }
+`;
