@@ -6,5 +6,6 @@ export const theme = {
         black: "#000",
         matterhorn: "41343A",
         white: "#fff",
+        red: "#FF0000",
     }
 }
