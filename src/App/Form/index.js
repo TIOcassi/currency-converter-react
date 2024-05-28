@@ -1,9 +1,27 @@
 import { useState } from "react";
 import { currencies } from "../currencies";
-import { Result } from "./Result";
-import { StyledForm, Header, Text, Field, Select, Button } from "./styled";
+// import { Result } from "./Result";
+import {
+      StyledForm, Header, Text, Field, Select,
+      Button, Loading, Failure,
+} from "./styled";
 
-export const Form = ({ calculateResult, result }) => {
+import { useCurrentRates } from "../../useCurrentRates";
+
+export const Form = () => {
+      const [result, setResult] = useState();
+      const rates = useCurrentRates();
+}
+
+const calculateResult = (currency, amount) => {
+      const rate = rates.rates[currency];
+
+      setResult({
+            sourceAmount: +amount,
+            targetAmount: amount * rate,
+            currency,
+      });
+}
       const [currency, setCurrency] = useState(currencies[0].short);
       const [amount, setAmount] = useState("");
 
@@ -11,51 +29,70 @@ export const Form = ({ calculateResult, result }) => {
             event.preventDefault();
             calculateResult(currency, amount);
       }
+      
       return (
             <StyledForm onSubmit={onSubmit}>
                   <Header>
                         Przelicznik walut
                   </Header>
-                  <p>
-                        <label>
-                              <Text>
-                                    Kwota w zł*:
-                              </Text>
-                              <Field
-                                    value={amount}
-                                    onChange={({ target }) => setAmount(target.value)}
-                                    placeholder="wpisz kwotę w zł"
-                                    type="number"
-                                    required
-                                    step="0.01"
-                              />
-                        </label>
-                  </p>
-                  <p>
-                        <label>
-                              <Text>
-                                    Waluta:
-                              </Text>
-                              <Select
-                                    value={currency}
-                                    onChange={({ target }) => setCurrency(target.value)}
-                              >
-                                    {currencies.map((currency => (
-                                          <option
-                                                key={currency.short}
-                                                value={currency.short}
-                                          >
-                                                {currency.name}
-                                          </option>
-                                    )))}
-                              </Select>
-                        </label>
-                  </p>
-                  <p>
-                        <Button>Przelicz!</Button>
-                  </p>
+                  {rates.state === "loading"
+                        ? (
+                              <Loading>
+                                    Proszę czekać...
+                              </Loading>
+                        )
+                        : (
+                              rates.state === "error" ? (
+                                    <Failure>
+                                          Coś jest nie tak, sprawdź połączenie
+                                    </Failure>
+                              ) : (
+                                    
+                                          <p>
+                                                <label>
+                                                      <Text>
+                                                            Kwota w zł*:
+                                                      </Text>
+                                                      <Field
+                                                            value={amount}
+                                                            onChange={({ target }) => setAmount(target.value)}
+                                                            placeholder="wpisz kwotę w zł"
+                                                            type="number"
+                                                            required
+                                                            step="0.01"
+                                                      />
+                                                </label>
+                                                <p>
+                                                      <label>
+                                                            <Text>
+                                                                  Waluta:
+                                                            </Text>
+                                                            <Select
+                                                                  as="select"
+                                                                  value={currency}
+                                                                  onChange={({ target }) => setCurrency(target.value)}
+                                                            >
+                                                                  {Object.keys(rates.rates).map(((currency) => (
+                                                                        <option
+                                                                              key={currency}
+                                                                              value={currency}
+                                                                        >
+                                                                              {currency}
+                                                                        </option>
+                                                                  )))}
+                                                            </Select>
+                                                      </label>
+                                                </p>
 
-                  <Result result={result} />
-            </StyledForm>
+
+
+                                                <p>
+                                                      <Button>Przelicz!</Button>
+                                                </p>
+
+                                                <Result result={result} />
+                                          </p>
+                                          )
+                        )}
+                                    </StyledForm>
       );
-}

@@ -42,3 +42,11 @@ export const Button = styled.button`
         background-color: ${({ theme }) => theme.color.pink};
       }
 `;
+
+export const Loading = styled.p `
+  color: ${({ theme }) => theme.color.blue};
+`;
+
+export const Failure = styled.p `
+  color: ${({ theme }) => theme.color.red};
+`;
